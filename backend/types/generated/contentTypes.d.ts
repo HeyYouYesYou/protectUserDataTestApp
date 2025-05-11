@@ -429,6 +429,10 @@ export interface ApiToDoToDo extends Struct.CollectionTypeSchema {
     >;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'title'>;
+    task_list: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::task-list.task-list'
+    >;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

@@ -18,15 +18,16 @@
       "type": "uid",
       "targetField": "title"
     },
-    "to_dos": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::to-do.to-do"
-    },
     "owner": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
+    },
+    "to_dos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::to-do.to-do",
+      "mappedBy": "task_list"
     }
   }
 }

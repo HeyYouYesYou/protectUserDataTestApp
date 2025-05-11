@@ -26,6 +26,12 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
+    },
+    "task_list": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::task-list.task-list",
+      "inversedBy": "to_dos"
     }
   }
 }
