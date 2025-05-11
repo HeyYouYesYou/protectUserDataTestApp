@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "task_lists",
+  "info": {
+    "singularName": "task-list",
+    "pluralName": "task-lists",
+    "displayName": "TaskList",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "to_dos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::to-do.to-do"
+    },
+    "owner": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}
