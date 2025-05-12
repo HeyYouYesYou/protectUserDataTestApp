@@ -2,7 +2,10 @@
 import { CircleCheckBig, CircleDashed, X } from "lucide-react";
 
 import { todoItemProps } from "./page";
-import { UpdateIsDoneToDos } from "@/app/data/actions/to-do-item-actions";
+import {
+  DeleteToDoItem,
+  UpdateIsDoneToDos,
+} from "@/app/data/actions/to-do-item-actions";
 
 const toggleIsDoneHandler = async (todo: Readonly<todoItemProps>) => {
   const payload = {
@@ -11,6 +14,10 @@ const toggleIsDoneHandler = async (todo: Readonly<todoItemProps>) => {
   };
 
   await UpdateIsDoneToDos(payload);
+};
+
+const deleteHandler = async (todo: Readonly<todoItemProps>) => {
+  await DeleteToDoItem(todo);
 };
 
 const ToDoItem = (todo: Readonly<todoItemProps>) => {
@@ -26,7 +33,11 @@ const ToDoItem = (todo: Readonly<todoItemProps>) => {
         </button>
         <p className="ml-2">{todo?.title}</p>
       </div>
-      <X cursor={"pointer"} className="text-destructive" />
+      <X
+        cursor={"pointer"}
+        className="text-destructive"
+        onClick={() => deleteHandler(todo)}
+      />
     </>
   );
 };

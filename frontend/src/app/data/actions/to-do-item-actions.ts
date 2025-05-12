@@ -27,3 +27,18 @@ export const UpdateIsDoneToDos = async (payload: Readonly<todoItemProps>) => {
 
     return response;
 };
+
+export const DeleteToDoItem = async (payload: Readonly<todoItemProps>) => {
+    const query = qs.stringify({
+        populate: "*",
+    });
+
+    const response = await mutateData({
+        method: "DELETE",
+        path: `/api/to-dos/${payload.documentId}?${query}`,
+    });
+
+    revalidatePath(`/categories/${payload.listDocumentId}`);
+
+    return response;
+};
