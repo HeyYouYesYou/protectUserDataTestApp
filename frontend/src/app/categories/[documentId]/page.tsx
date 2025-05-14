@@ -5,6 +5,7 @@ import Card from "@/components/ui/card";
 import H1 from "@/components/ui/H1";
 import PrimaryButton from "@/components/ui/primaryButton";
 import ToDoItem from "./to-do-item";
+import Link from "next/link";
 
 export interface todoItemProps {
   title: string;
@@ -49,7 +50,10 @@ const TaskListPage = async ({ params }: { params: { documentId: string } }) => {
             );
           })}
         </ul>
-        <PrimaryButton className="fixed bottom-8 right-4">add</PrimaryButton>
+
+        <Link href={`/categories/${documentId}/add-task`}>
+          <PrimaryButton className="fixed bottom-8 right-4">add</PrimaryButton>
+        </Link>
       </article>
     </Card>
   );
