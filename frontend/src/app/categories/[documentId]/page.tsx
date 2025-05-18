@@ -1,11 +1,11 @@
 import qs from "qs";
 
 import { mutateData } from "@/app/data/services/mutate-data";
-import Card from "@/components/ui/card";
+import CustomCard from "@/components/ui/customCard";
 import H1 from "@/components/ui/H1";
-import PrimaryButton from "@/components/ui/primaryButton";
 import ToDoItem from "./to-do-item";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export interface todoItemProps {
   title: string;
@@ -35,7 +35,7 @@ const TaskListPage = async ({ params }: { params: { documentId: string } }) => {
   );
 
   return (
-    <Card>
+    <CustomCard>
       <H1 className="my-4 text-center">{data?.data?.title}</H1>
       <article className="w-full">
         <ul className="p-2 ">
@@ -51,11 +51,16 @@ const TaskListPage = async ({ params }: { params: { documentId: string } }) => {
           })}
         </ul>
 
-        <Link href={`/categories/${documentId}/add-task`}>
-          <PrimaryButton className="fixed bottom-8 right-4">add</PrimaryButton>
+        <Link
+          href={{
+            pathname: `/categories/${documentId}/add-task`,
+            query: { listDocumentId: documentId },
+          }}
+        >
+          <Button className="fixed bottom-8 right-4 cursor-pointer">add</Button>
         </Link>
       </article>
-    </Card>
+    </CustomCard>
   );
 };
 

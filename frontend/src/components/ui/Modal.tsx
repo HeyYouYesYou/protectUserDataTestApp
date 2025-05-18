@@ -25,15 +25,15 @@ export const Modal = ({ children }: Readonly<ModalProps>) => {
   return (
     <Dialog defaultOpen={true} open={true} onOpenChange={handleOpenChange}>
       <DialogOverlay>
-        <DialogContent className="overflow-y-hidden">
-          <DialogHeader>
-            <div className="hidden">
+        <DialogContent className="overflow-y-hidden bg-transparent border-none">
+          <div className="hidden">
+            <DialogHeader>
               <DialogTitle>Create new tasks list</DialogTitle>
               <DialogDescription>
                 A form, that allow to create new task
               </DialogDescription>
-            </div>
-          </DialogHeader>
+            </DialogHeader>
+          </div>
           {children}
         </DialogContent>
       </DialogOverlay>

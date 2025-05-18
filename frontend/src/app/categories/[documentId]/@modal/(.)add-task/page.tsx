@@ -1,13 +1,15 @@
+"use client";
+import NewTaskForm from "@/components/forms/NewTaskForm";
 import { Modal } from "@/components/ui/Modal";
-import PrimaryButton from "@/components/ui/primaryButton";
+import { useSearchParams } from "next/navigation";
 
 const AddNewTask = () => {
+  const searchParams = useSearchParams();
+  const listDocumentId = searchParams.get("listDocumentId") as string;
+
   return (
     <Modal>
-      <div>
-        <p>add new task form</p>
-        <PrimaryButton>Add</PrimaryButton>
-      </div>
+      <NewTaskForm listDocumentId={listDocumentId} />
     </Modal>
   );
 };

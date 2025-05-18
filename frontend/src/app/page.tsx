@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import Card from "@/components/ui/card";
+import Card from "@/components/ui/customCard";
 import H1 from "@/components/ui/H1";
 import PrimaryButton from "@/components/ui/primaryButton";
 

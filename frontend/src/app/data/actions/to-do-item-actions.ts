@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use server';
 
 import qs from "qs";
@@ -39,6 +40,55 @@ export const DeleteToDoItem = async (payload: Readonly<todoItemProps>) => {
     });
 
     revalidatePath(`/categories/${payload.listDocumentId}`);
+
+    return response;
+};
+
+export const CreateToDoItem = async (
+    listDocumentId: string,
+    prevState: any,
+    formData: FormData,
+) => {
+
+    const data = Object.fromEntries(formData);
+
+    const qwe = data.newTask as string;
+
+    const slug = qwe.replace(/\s/g, "-").toLowerCase();
+
+    const payload = {
+        data: {
+            title: data.newTask,
+            slug: slug,
+            isDone: false,
+        },
+    }
+
+    const response = await mutateData({
+        method: "POST",
+        path: `/api/to-dos`,
+        body: payload,
+    });
+    const payloadWithRelation = {
+        data: {
+            to_dos: {
+                connect: [
+                    {
+                        documentId: response?.data?.documentId,
+                        status: 'published',
+                    }
+                ]
+            }
+        }
+    }
+
+    await mutateData({
+        method: "PUT",
+        path: `/api/task-lists/${listDocumentId}/?populate=*`,
+        body: payloadWithRelation,
+    });
+
+    revalidatePath(`/categories/${listDocumentId}`);
 
     return response;
 };
