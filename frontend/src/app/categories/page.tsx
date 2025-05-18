@@ -3,7 +3,6 @@ import qs from "qs";
 import Link from "next/link";
 import { CircleFadingPlus } from "lucide-react";
 
-import CustomCard from "@/components/ui/customCard";
 import H1 from "@/components/ui/H1";
 import { mutateData } from "../data/services/mutate-data";
 import CategoryCardItem from "@/components/ui/category-item";
@@ -17,10 +16,9 @@ const CategoriesPage = async ({}) => {
     method: "GET",
     path: `/api/task-lists?${query}`,
   });
-  console.log(data);
 
   return (
-    <CustomCard>
+    <>
       <H1 className="my-8 text-center">Categories</H1>
 
       <section className="grid grid-cols-2 gap-4">
@@ -34,6 +32,7 @@ const CategoriesPage = async ({}) => {
           return (
             <Link href={`/categories/${item.documentId}`} key={item.documentId}>
               <CategoryCardItem
+                documentId={item.documentId}
                 title={item.title}
                 count={item.to_dos?.length}
               />
@@ -41,7 +40,7 @@ const CategoriesPage = async ({}) => {
           );
         })}
       </section>
-    </CustomCard>
+    </>
   );
 };
 

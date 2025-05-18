@@ -1,7 +1,6 @@
 import qs from "qs";
 
 import { mutateData } from "@/app/data/services/mutate-data";
-import CustomCard from "@/components/ui/customCard";
 import H1 from "@/components/ui/H1";
 import ToDoItem from "./to-do-item";
 import Link from "next/link";
@@ -35,7 +34,7 @@ const TaskListPage = async ({ params }: { params: { documentId: string } }) => {
   );
 
   return (
-    <CustomCard>
+    <>
       <H1 className="my-4 text-center">{data?.data?.title}</H1>
       <article className="w-full">
         <ul className="p-2 ">
@@ -60,7 +59,7 @@ const TaskListPage = async ({ params }: { params: { documentId: string } }) => {
           <Button className="fixed bottom-8 right-4 cursor-pointer">add</Button>
         </Link>
       </article>
-    </CustomCard>
+    </>
   );
 };
 

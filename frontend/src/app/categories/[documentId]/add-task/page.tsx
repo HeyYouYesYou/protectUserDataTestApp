@@ -1,6 +1,6 @@
 "use client";
+import React from "react";
 import NewTaskForm from "@/components/forms/NewTaskForm";
-import CustomCard from "@/components/ui/customCard";
 import { useSearchParams } from "next/navigation";
 
 const AddNewTask = () => {
@@ -8,9 +8,9 @@ const AddNewTask = () => {
   const listDocumentId = searchParams.get("listDocumentId") as string;
 
   return (
-    <CustomCard className="items-center justify-center">
+    <div className="h-[calc(100vh-90px)] flex  flex-col justify-center">
       <NewTaskForm listDocumentId={listDocumentId} />
-    </CustomCard>
+    </div>
   );
 };
 
