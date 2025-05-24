@@ -52,13 +52,13 @@ export const CreateToDoItem = async (
 
     const data = Object.fromEntries(formData);
 
-    const qwe = data.newTask as string;
+    const qwe = String(data.newTask);
 
     const slug = qwe.replace(/\s/g, "-").toLowerCase();
 
     const payload = {
         data: {
-            title: data.newTask,
+            title: qwe,
             slug: slug,
             isDone: false,
         },
