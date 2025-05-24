@@ -1,3 +1,4 @@
+import { getAuthToken } from './getAuthToken';
 
 import { getBackendUrl } from "@/lib/utils";
 
@@ -9,6 +10,17 @@ interface Props {
 
 export const mutateData = async ({ method, path, body }: Readonly<Props>) => {
     const baseUrl = getBackendUrl();
+
+    const authToken = await getAuthToken();
+
+    if (!authToken) {
+        return {
+            ok: false,
+            data: null,
+            error: null
+        };
+    }
+
     const url = new URL(path, baseUrl);
 
     try {
@@ -16,6 +28,7 @@ export const mutateData = async ({ method, path, body }: Readonly<Props>) => {
             method,
             headers: {
                 'Content-Type': 'application/json',
+                Authorization: `Bearer ${authToken}`,
             },
             body: body ? JSON.stringify(body) : undefined,
         });

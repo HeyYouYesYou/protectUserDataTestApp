@@ -1,20 +1,30 @@
 import Link from "next/link";
 
-import Card from "@/components/ui/customCard";
+import CustomCard from "@/components/ui/customCard";
 import H1 from "@/components/ui/H1";
-import PrimaryButton from "@/components/ui/primaryButton";
+import { Button } from "@/components/ui/button";
 
-export default function Home() {
+import { getUserMeLoader } from "./data/services/getUserMeLoader";
+
+export default async function Home() {
+  const user = await getUserMeLoader();
+
   return (
     <main className="flex flex-col items-center  justify-center">
-      <Card className="items-center">
+      <CustomCard className="items-center">
         <H1>Home title</H1>
 
         <h2 className="text-2xl">home page short description</h2>
 
-        <Link href={"/categories"}>
-          <PrimaryButton>CTA - go to task lists or login form</PrimaryButton>
-        </Link>
+        {user.isAuthorized ? (
+          <Link href={"/categories"}>
+            <Button>Go to the task`s categories</Button>
+          </Link>
+        ) : (
+          <Link href="/signin">
+            <Button>Login or register</Button>
+          </Link>
+        )}
 
         <p>image</p>
 
@@ -38,7 +48,7 @@ export default function Home() {
             aspernatur omnis quia commodi!
           </p>
         </div>
-      </Card>
+      </CustomCard>
     </main>
   );
 }
