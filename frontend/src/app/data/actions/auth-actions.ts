@@ -47,11 +47,8 @@ export const loginUserAction = async (prevState: any, formData: FormData) => {
         identifier: String(formData.get('identifier')),
         password: String(formData.get('current-password'))
     }
-    console.log('user :', user);
-
 
     const response = await loginUser(user);
-    console.log('response :', response);
 
     if (response.error) {
         return {
