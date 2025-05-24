@@ -1,11 +1,11 @@
 import LoginForm from "@/components/forms/LoginForm";
 
-const SignInRoute = () => {
+const SignUpRoute = () => {
   return (
     <article>
-      <LoginForm defaultValue="signin" />
+      <LoginForm defaultValue="signup" />
     </article>
   );
 };
 
-export default SignInRoute;
+export default SignUpRoute;

@@ -1,3 +1,4 @@
+import CustomCard from "@/components/ui/customCard";
 import React from "react";
 
 interface layoutProps {
@@ -5,7 +6,11 @@ interface layoutProps {
 }
 
 const AuthLayout = ({ children }: layoutProps) => {
-  return <article>{children}</article>;
+  return (
+    <CustomCard className="flex justify-center items-center">
+      {children}
+    </CustomCard>
+  );
 };
 
 export default AuthLayout;
