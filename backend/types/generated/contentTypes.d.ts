@@ -935,7 +935,6 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 3;
       }>;
-    userName: Schema.Attribute.String;
   };
 }
 
